@@ -13,4 +13,8 @@ export class AppComponent {
   constructor( private auth:Auth ){
 
   }
+
+  showProfile(){
+    console.log(this.auth.userProfile);
+  }
 }
