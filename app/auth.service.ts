@@ -8,7 +8,20 @@ declare var Auth0Lock:any;
 @Injectable()
 export class Auth{
     userProfile;
-    lock=new Auth0Lock('xglFOqqtkJkfIKKBenANeIRaw0m3QJtK','moorthi.auth0.com',{})
+    lock=new Auth0Lock('xglFOqqtkJkfIKKBenANeIRaw0m3QJtK','moorthi.auth0.com',{
+        additionalSignUpFields:[
+            {
+                name:'Location',
+                placeholder:'Where do you live?',
+                validator: function(value){
+                    return {
+                        valid:value.length>=5,
+                        hint:'Address should be minimum 5 characters'
+                    };
+                }
+            }
+        ]
+    })
 
     constructor(){
         this.userProfile=JSON.parse(localStorage.getItem('profile'));
